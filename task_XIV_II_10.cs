@@ -9,7 +9,7 @@ namespace Task
 {
     class Program
     {
-        struct Student : IComparable<Student> 
+        struct Student : IComparable<Student>
         {
             string name, surname, patr;
             int year, group;
@@ -35,9 +35,12 @@ namespace Task
                     return -1;
             }
 
-            public void Show(StreamWriter a)
+            public void Show()
             {
-                a.WriteLine(name + " " + surname + " " + patr + " " + year + " " + group + " " + sec);
+                using (StreamWriter OUT = new StreamWriter("C:/Users/jojom/source/repos/ConsoleApp1/ConsoleApp1/output.txt", true))
+                {
+                    OUT.WriteLine(name + " " + surname + " " + patr + " " + year + " " + group + " " + sec);
+                }
             }
         }
 
@@ -45,8 +48,6 @@ namespace Task
         {
             using (StreamReader IN = new StreamReader("C:/Users/jojom/source/repos/ConsoleApp1/ConsoleApp1/input.txt", Encoding.GetEncoding(1251)))
             {
-                using (StreamWriter OUT = new StreamWriter("C:/Users/jojom/source/repos/ConsoleApp1/ConsoleApp1/output.txt", false))
-                {
                     List<Student> mass = new List<Student>();
                     int n = Convert.ToInt32(IN.ReadLine());
                     string[] s;
@@ -63,7 +64,7 @@ namespace Task
                     int j = 0;
                     while (k > 0 && j < n)
                     {
-                        mass[j].Show(OUT);
+                        mass[j].Show();
 
                         if (j < n - 1)
                             if (mass[j + 1].sec != mass[j].sec)
@@ -71,7 +72,7 @@ namespace Task
 
                         j++;
                     }
-                }
+                
             }
         }
     }

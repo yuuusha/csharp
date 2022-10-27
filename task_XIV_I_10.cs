@@ -46,75 +46,46 @@ namespace Task
             return Math.Sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
         }
 
-        public struct OXY
-        {
-            public static StringBuilder[] o = new StringBuilder[] { new StringBuilder("___________"),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|.........."),
-                                                                    new StringBuilder("|..........") };
-
-            public void set(Point A, char c)
-            {
-                o[A.y][A.x] = c;
-            }
-            public void Show()
-            {
-                for (int i = o.Length-1; i >= 0; i--)
-                {
-                    Console.WriteLine(o[i]);
-                }
-            }
-        }
         static void Main(string[] args)
         {
-            //OXY pole = new OXY();
-
-            List<Point3> mass = new List<Point3> { new Point3(1, 1, 1),
-                                                   new Point3(2, 3, 4), 
-                                                   new Point3(2, 1, 3),
-                                                   new Point3(2, 4, 1),
-                                                   new Point3(5, 5, 2),
-                                                   new Point3(3, 1, 1),
-                                                   new Point3(3, 3, 3) };
-
-           //{
-           //     pole.set(new Point(2, 2), 'A');
-           //     pole.set(new Point(3, 8), 'B');
-           //     pole.set(new Point(6, 5), 'C');
-           //     pole.set(new Point(8, 9), 'D');
-           //     pole.set(new Point(9, 3), 'E');
-           //     pole.set(new Point(10, 8), 'F');
-           //     pole.Show();
-           // }
-
-            int r = 3, k, maxk = 0, ik = 0;
-
-            for (int i = 0; i < mass.Count; i++)
+            using (StreamReader IN = new StreamReader("C:/Users/jojom/source/repos/ConsoleApp1/ConsoleApp1/oxy.txt", Encoding.GetEncoding(1251)))
             {
-                k = 0;
 
-                for (int j = 0; j < mass.Count; j++)
-                    if (dist3(mass[i], mass[j]) <= r)
-                        k++;
+                List<Point3> mass = new List<Point3>();
+                string[] s;
 
-                if (k > maxk)
+                int n = Convert.ToInt32(IN.ReadLine());
+                for (int i = 0; i < n; i++)
                 {
-                    maxk = k;
-                    ik = i;
+                    s = IN.ReadLine().Split();
+                    mass.Add(new Point3(Convert.ToInt32(s[0]), Convert.ToInt32(s[1]), Convert.ToInt32(s[2])));
                 }
-                mass[i].Show();
-                Console.WriteLine(" = " + k);
-            }
 
-            Console.WriteLine("answer:");
-            mass[ik].Show();
+                
+
+                int r = 3, k, maxk = 0, ik = 0;
+
+                for (int i = 0; i < mass.Count; i++)
+                {
+                    k = 0;
+
+                    for (int j = 0; j < mass.Count; j++)
+                        if (dist3(mass[i], mass[j]) <= r)
+                            k++;
+
+                    if (k > maxk)
+                    {
+                        maxk = k;
+                        ik = i;
+                    }
+                    mass[i].Show();
+                    Console.WriteLine(" = " + k);
+                }
+
+                Console.WriteLine("answer:");
+                mass[ik].Show();
+                Console.WriteLine();
+            }
         }
     }
 }
