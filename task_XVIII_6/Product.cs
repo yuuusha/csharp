@@ -10,7 +10,6 @@ namespace Task18
     {
 
         internal string name;
-        internal int price;
         internal DateTime prodDate;
         internal TimeSpan timeOfLife;
 

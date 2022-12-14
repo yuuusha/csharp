@@ -9,7 +9,6 @@ namespace Task18
     class Batch: Goods
     {
         internal string name;
-        internal int price;
         internal DateTime prodDate;
         internal TimeSpan timeOfLife;
         internal int count;

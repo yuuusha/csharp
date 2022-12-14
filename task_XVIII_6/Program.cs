@@ -39,12 +39,22 @@ namespace Task18
                     }
                 }
 
+
+                Console.WriteLine("\n-----------------\nSorted list by price:");
+                listOfProds.Sort();
+                foreach (Product x in listOfProds)
+                {
+                    x.Show();
+                }
+
+
                 Set setOfProds = new Set("My Set", listOfProds);
 
                 Console.WriteLine("\n------------------\nThe set of products:");
                 setOfProds.Show();
 
                 Console.WriteLine("Is this set expired? " + setOfProds.isExpired(curDate));
+
             }
 
             using (StreamReader IN = new StreamReader("C:/Users/jojom/source/repos/ConsoleApp3/ConsoleApp3/input18batch.txt", Encoding.GetEncoding(1251)))

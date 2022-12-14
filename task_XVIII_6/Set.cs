@@ -9,7 +9,6 @@ namespace Task18
     class Set: Goods
     {
         string name;
-        int price = 0;
         List<Product> listOfProds;
 
         public Set(string s, List<Product> list)
