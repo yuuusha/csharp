@@ -82,7 +82,7 @@ namespace ConsoleApp1
                     }
                     else
                        
-                {
+                     {
                         if (((IComparable)(r.inf)).CompareTo(key) > 0)
                         {
                             Search(r.left, key, out item);
@@ -148,17 +148,92 @@ namespace ConsoleApp1
                 }
             }
 
-            public static void OnlyRight(Node r, ref int k)
+            public static bool isExist(Node start, int key)
             {
-                if (r.left == null && r.right != null)
-                {
-                    k += r.inf;
-                }
-                if (r.left != null)
-                    OnlyRight(r.left, ref k);
-                if (r.right != null)
-                    OnlyRight(r.right, ref k);
+                Node r;
+                Search(start, key, out r);
+                return (r != null);
             }
+    
+
+            public static void isNodeBalanced(Node r, ref bool flagBalance)
+            {
+                if (r != null)
+                {
+                    int height1 = height(r.left);
+                    int height2 = height(r.right);
+                    //Height(r.left, ref height1);
+                    //Height(r.right, ref height2);
+                    if (Math.Abs(height2 - height1) <= 1 && flagBalance)
+                    {
+                        isNodeBalanced(r.left, ref flagBalance);
+                        isNodeBalanced(r.right, ref flagBalance);
+                    }
+                    else
+                    {
+                        flagBalance = false;
+                        //Console.WriteLine(r.inf);
+                        //Console.WriteLine("{0}, {1}", height1, height2);
+                        return;
+                    }
+                }
+            }
+
+            public static void AddToBalance(Node r, ref int count, Node start)
+            {
+                if (r != null)
+                {
+                    int height1 = height(r.left);
+                    int height2 = height(r.right);
+                    if (Math.Abs(height2 - height1) > 1)
+                    {
+                        Node temp = r;
+                        count++;
+                        if (height2 < height1)
+                        {
+                            while (temp.right != null)
+                            {
+                                temp = temp.right;
+                            }
+
+                            if (isExist(start, temp.inf + 1))
+                            {
+                                throw new Exception("Can't be balanced");
+                            }
+
+                            Add(ref temp, temp.inf + 1);
+                            AddToBalance(r, ref count, start);
+                        }
+                        else
+                        {
+                            while (temp.left != null)
+                            {
+                                temp = temp.left;
+                            }
+
+                            if (isExist(start, temp.inf - 1))
+                            {
+                                throw new Exception("Can't be balanced");
+                            }
+
+                            Add(ref temp, temp.inf - 1);
+                            AddToBalance(r, ref count, start);
+                        }
+                    }
+                    AddToBalance(r.left, ref count, start);
+                    AddToBalance(r.right, ref count, start);
+                }
+            }
+
+            public static int height(Node r)
+            {
+                if (r == null)
+                {
+                    return 0;
+                }
+                return 1 + Math.Max(height(r.left), height(r.right));
+            }
+
         } 
         Node tree; 
                    
@@ -209,11 +284,29 @@ namespace ConsoleApp1
             Node.Delete(ref tree, key);
         }
 
-        public int OnlyRight() 
+        public int Height()
         {
-            int k = 0;
-            Node.OnlyRight(tree, ref k);
-            return k;
+            return Node.height(tree);
         }
+
+        public bool isTreeBalanced()
+        {
+            bool flagBalance = true;
+            Node.isNodeBalanced(tree, ref flagBalance);
+            return flagBalance;
+        }
+
+        public int AddToBalance()
+        {
+            int count = 0;
+            Node.AddToBalance(tree, ref count, tree);
+            return count;
+        }
+        
+        public bool isExist(int key)
+        {
+            return Node.isExist(tree, key);
+        }
+
     }
 }
