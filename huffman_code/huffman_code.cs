@@ -11,6 +11,9 @@ namespace ConsoleApp3
 
     class Program
     {
+
+        public static Dictionary<char, string> codingTable = new Dictionary<char, string>();
+
         public static Dictionary<char, string> getCodingTable(string s)
         {
             Dictionary<char, int> alphabet = new Dictionary<char, int>();
@@ -33,7 +36,6 @@ namespace ConsoleApp3
             var setEnumerator = set.GetEnumerator();
             Node a, b;
 
-
             while (set.Count > 1)
             {
                 setEnumerator.MoveNext();
@@ -50,7 +52,7 @@ namespace ConsoleApp3
             setEnumerator.MoveNext();
             Node root = setEnumerator.Current;
 
-            Dictionary<char, string> codingTable = new Dictionary<char, string>();
+            /*Dictionary<char, string>*/ codingTable = new Dictionary<char, string>();
             string ss = "";
             Node.FormCode(root, ss, ref codingTable);
 
@@ -77,31 +79,11 @@ namespace ConsoleApp3
 
             int nulls = (8 - (output_s.Length + 3) % 8) != 8 ? (8 - (output_s.Length + 3) % 8) : 0;
             string null_s = "";
-            output_s.Insert(0, Convert.ToString(nulls,2).PadLeft(3, '0'));
+            output_s.Insert(0, Convert.ToString(nulls, 2).PadLeft(3, '0'));
             output_s.Append(null_s.PadLeft(nulls, '0'));
 
             return output_s;
         }
-
-        //public static BitArray bits(StringBuilder s)
-        //{
-        //    BitArray bitArr = new BitArray(s.Length);
-
-        //    for (int i = 0; i < s.Length; i++)
-        //    {
-        //        bitArr[i] = (s[i] == '1') ? true : false;
-        //    }
-
-        //    return bitArr;
-        //}
-
-        //public static void printBits(BitArray bits)
-        //{
-        //    foreach (var x in bits)
-        //    {
-        //        Console.Write("{0} ", x);
-        //    }
-        //}
 
         public static void TxtToBin()
         {
@@ -112,15 +94,22 @@ namespace ConsoleApp3
                 input_s = IN.ReadToEnd();
             }
 
-            Dictionary<char, string> codingTable = getCodingTable(input_s);
+            /*Dictionary<char, string>*/ codingTable = getCodingTable(input_s);
+
+            //foreach (var x in codingTable) 
+            //{
+            //    Console.WriteLine("{0}:{1}", x.Key, x.Value);
+            //}
 
             StringBuilder output_s = getCodeString(input_s, codingTable);
+
+            //Console.WriteLine(output_s);
 
             using (BinaryWriter OUT = new BinaryWriter(File.Open("output_h.bin", FileMode.Create)))
             {
                 for (int i = 0; i < output_s.Length; i += 8)
                 {
-                    OUT.Write((byte)Convert.ToInt32(output_s.ToString(i, 8), 2));
+                    OUT.Write(Convert.ToByte(output_s.ToString(i, 8), 2));
                 }
             }
         }
@@ -188,7 +177,10 @@ namespace ConsoleApp3
 
         static void Main(string[] args)
         {
+
+            Console.WriteLine("0. Закодировать и сжать файл\n1. Раскодировать ранее сжатый файл");
             int mode = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             switch (mode) 
             {
                 case 0:
@@ -197,14 +189,34 @@ namespace ConsoleApp3
                         var fileIN = new FileInfo("input_h.txt").Length;
                         var fileOUT = new FileInfo("output_h.bin").Length;
                         Console.WriteLine("Кодирование прошло успешно.\nРазмер исходного файла: {0} байт.\nРазмер сжатого файла: {1} байт.", fileIN, fileOUT);
+                        Console.WriteLine("2. Просмотреть коды символов в алфавите\n3. Выйти из программы");
+                        mode = Convert.ToInt32(Console.ReadLine());
+                        switch (mode) 
+                        {
+                            case 2:
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Количество символов в алфавите: ", codingTable.Count);
+                                    foreach (var x in codingTable)
+                                    {
+                                        Console.WriteLine("{0}: {1}", x.Key, x.Value);
+                                    }
+                                    break;
+                                }
+                            default:
+                                {
+                                    return;
+                                }
+                        }
                         break;
                     }
                 case 1:
                     {
-                        var fileIN = new FileInfo("output_h.bin").Length;
-                        var fileOUT = new FileInfo("output_h.txt").Length;
+                        //var fileIN = new FileInfo("output_h.bin").Length;
+                        //var fileOUT = new FileInfo("output_h.txt").Length;
                         BinToTxt();
-                        Console.WriteLine("Декодирование прошло успешно.\nРазмер исходного файла: {0} байт.\nРазмер декодированного файла: {1} байт.", fileIN, fileOUT);
+                        Console.WriteLine("Декодирование прошло успешно.\nВы можете просмотреть полученное сообщение в файле");
+                        //Console.WriteLine("Размер исходного файла: {0} байт.\nРазмер декодированного файла: {1} байт.", fileIN, fileOUT);
                         break;
                     }
                 default: Console.WriteLine("Error: mode isn't exist"); break;

@@ -8,12 +8,12 @@ namespace ConsoleApp3
 {
     public class Node : IComparable
     {
-        public char inf;
-        public int freq;
-        public int height;
+        private char inf;
+        private int freq;
+        private int height;
         //public string code;
-        public Node left;
-        public Node right;
+        private Node left;
+        private Node right;
 
         public Node(char ch, int fr, int ht = 0)
         {
