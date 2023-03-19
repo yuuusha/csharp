@@ -42,12 +42,11 @@ namespace ConsoleApp1
                 }
             }
 
-            public static void AddLeft(ref Node r, int max, int min = -10000)
+            public static void AddLeft(ref Node r, int max, int min)
             {
                 if (r == null)
                 {
-                    if (min == -10000)
-                        max-=50;
+                    
                     r = new Node(mid(max, min+2));
                 }
                 else
@@ -65,13 +64,12 @@ namespace ConsoleApp1
                 }
             }
 
-            public static void AddRight(ref Node r, int min, int max = 10000)
+            public static void AddRight(ref Node r, int min, int max)
             {
                 if (r == null)
                 {
-                    if (max == 10000)
-                        min -= 50;
-                    r = new Node(mid(max, min+2));
+                    
+                    r = new Node(mid(max, min));
                 }
                 else
                 {
@@ -242,6 +240,9 @@ namespace ConsoleApp1
 
             public static void AddToBalancePrimary(Node r, Node start)
             {
+                int maxValue = 2* max(start);
+                int minValue = min(start);
+                minValue *= minValue < 0 ? 2: -2;
                 if (r != null)
                 {
                     int heightl = height(r.left);
@@ -255,7 +256,7 @@ namespace ConsoleApp1
                             {
                                 temp = temp.right;
                             }
-                            AddRight(ref start, temp.inf + 1);
+                            AddRight(ref start, temp.inf + 1, 2*maxValue);
                         }
                         else
                         {
@@ -263,7 +264,7 @@ namespace ConsoleApp1
                             {
                                 temp = temp.left;
                             }
-                            AddLeft(ref start, temp.inf - 1);
+                            AddLeft(ref start, temp.inf - 1, 2*minValue);
                         }
                     }
                 }
@@ -303,6 +304,24 @@ namespace ConsoleApp1
                     AddToBalance(r.left, ref count, start);
                     AddToBalance(r.right, ref count, start);
                 }
+            }
+
+            public static int max(Node r) 
+            {
+                while (r.right != null)
+                {
+                   r = r.right;
+                }
+                return r.inf;
+            }
+
+            public static int min(Node r)
+            {
+                while (r.left != null)
+                {
+                    r = r.left;
+                }
+                return r.inf;
             }
 
             public static int height(Node r)
@@ -415,6 +434,16 @@ namespace ConsoleApp1
             }
             Preorder();
             Console.WriteLine("Is tree balanced? {0}", isTreeBalanced());
+        }
+
+        public int max()
+        {
+            return Node.max(tree);
+        }
+
+        public int min()
+        {
+            return Node.min(tree);
         }
     }
 }
