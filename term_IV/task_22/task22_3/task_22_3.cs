@@ -29,11 +29,11 @@ namespace ConsoleApp4
             }
             g.Recalc(towns);
 
-            Console.WriteLine("РќР°С‡Р°Р»СЊРЅР°СЏ С‚РѕС‡РєР°:");
+            Console.WriteLine("Начальная точка:");
             int a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("РљРѕРЅРµС‡РЅР°СЏ С‚РѕС‡РєР°:");
+            Console.WriteLine("Конечная точка:");
             int b = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("РџСѓС‚СЊ РјРѕР¶РµС‚ РїСЂРѕС…РѕРґРёС‚СЊ С‚РѕР»СЊРєРѕ С‡РµСЂРµР· РіРѕСЂРѕРґР°...");
+            Console.WriteLine("Путь может проходить только через города...");
             int t = 0;
             List<int> ver = new List<int>();
             while (t != -1)
@@ -49,7 +49,7 @@ namespace ConsoleApp4
 
 /*
 
-Р“СЂР°С„ РґР»СЏ РѕС‚Р»Р°РґРєРё
+Граф для отладки
 5
 0 2 0 7 1
 2 0 5 4 0

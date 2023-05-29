@@ -1,0 +1,15 @@
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\bin\Debug\net7.0\CIAKOD24.exe
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\bin\Debug\net7.0\CIAKOD24.deps.json
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\bin\Debug\net7.0\CIAKOD24.runtimeconfig.json
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\bin\Debug\net7.0\CIAKOD24.dll
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\bin\Debug\net7.0\CIAKOD24.pdb
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\CIAKOD24.csproj.AssemblyReference.cache
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\CIAKOD24.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\CIAKOD24.AssemblyInfoInputs.cache
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\CIAKOD24.AssemblyInfo.cs
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\CIAKOD24.csproj.CoreCompileInputs.cache
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\CIAKOD24.dll
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\refint\CIAKOD24.dll
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\CIAKOD24.pdb
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\CIAKOD24.genruntimeconfig.cache
+C:\Users\jojom\source\repos\CIAKOD24\CIAKOD24\obj\Debug\net7.0\ref\CIAKOD24.dll

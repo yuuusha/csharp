@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "PLWindows/1.0.0": {
+        "dependencies": {
+          "CIAKOD24": "1.0.0"
+        },
+        "runtime": {
+          "PLWindows.dll": {}
+        }
+      },
+      "CIAKOD24/1.0.0": {
+        "runtime": {
+          "CIAKOD24.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PLWindows/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CIAKOD24/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

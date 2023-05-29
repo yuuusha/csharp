@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "CIAKOD24/1.0.0": {
+        "runtime": {
+          "CIAKOD24.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CIAKOD24/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
